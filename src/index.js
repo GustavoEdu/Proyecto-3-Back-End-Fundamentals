@@ -2,6 +2,8 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const expressLayouts = require("express-ejs-layouts");
+const { port, secret } = require("./config");
+const { connection } = require("./config/database");
 
 // Importando rutas
 const auth = require("./routes/auth");
@@ -29,11 +31,22 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.get("/", (req, res) => { res.end("Hola"); });
+// Test connection
+connection();
+
+app.get("/", (req, res) => { 
+    return res.end("Hola"); 
+});
 // Utilizando rutas
 app.use("/auth", auth);
 
-app.set("port", 4000);
-app.listen(app.get("port"), () => {
-    console.log(`Funcionando en: http://localhost:${app.get("port")}`);
+app.get("/notAllowed", (req, res) => { 
+    return res.render("notAllowed"); 
+});
+app.all("*", (req, res) => { 
+    return res.render("notFound"); 
+});
+
+app.listen(port, () => {
+    console.log(`Funcionando en: http://localhost:${port}`);
 });

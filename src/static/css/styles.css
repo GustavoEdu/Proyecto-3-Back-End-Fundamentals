@@ -16,3 +16,15 @@
     color: white;
 }
 /* /Signup */
+/* Not-Allowed */
+.notAllowed {
+    background-color: peru;
+    color: white;
+}
+/* /Not-Allowed */
+/* Not-Found */
+.notFound {
+    background-color: crimson;
+    color: white;
+}
+/* /Not-Found */
