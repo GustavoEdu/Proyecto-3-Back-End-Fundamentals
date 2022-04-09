@@ -1,0 +1,18 @@
+/* Navbar */
+.navbar {
+    background-color: steelblue;
+    color: white;
+}
+/* /Navbar */
+/* Login */
+.login {
+    background-color: midnightblue;
+    color: white;
+}
+/* /Login */
+/* Signup */
+.signup {
+    background-color: cornflowerblue;
+    color: white;
+}
+/* /Signup */

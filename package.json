@@ -1,0 +1,32 @@
+{
+  "name": "proyecto-3-back-end-fundamentals",
+  "version": "1.0.0",
+  "description": "Chat App with NodeJS, Express and MySQL.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoEdu/Proyecto-3-Back-End-Fundamentals.git"
+  },
+  "keywords": [],
+  "author": "gopoma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GustavoEdu/Proyecto-3-Back-End-Fundamentals/issues"
+  },
+  "homepage": "https://github.com/GustavoEdu/Proyecto-3-Back-End-Fundamentals#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
