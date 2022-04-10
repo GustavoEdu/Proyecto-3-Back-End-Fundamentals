@@ -1,13 +1,15 @@
 <main class="signup">
     <h2>Sign Up</h2>
     <form action="/auth/signup" method="POST">
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="date" name="birthday" required>
-        <input type="text" name="profilePic" placeholder="Profile Picture" required>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <input type="text" name="name" placeholder="Name" value="<% if (typeof(user) !== "undefined") { %><%- user.name %><% } %>">
+        <input type="text" name="username" placeholder="Username" value="<% if (typeof(user) !== "undefined") { %><%- user.username %><% } %>" required>
+        <input type="date" name="birthday" value="<% if (typeof(user) !== "undefined") { %><%- user.birthday %><% } %>" required>
+        <input type="text" name="profilePic" placeholder="Profile Picture" value="<% if (typeof(user) !== "undefined") { %><%- user.profilePic %><% } %>" required>
+        <input type="email" name="email" placeholder="Email" value="<% if (typeof(user) !== "undefined") { %><%- user.email %><% } %>" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="password" name="passwordRepeated" placeholder="Repeat Password" required>
         <input type="submit" value="Sign Up">
     </form>
+    <%- include("./components/authError") %>
 </main>

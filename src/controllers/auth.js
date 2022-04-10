@@ -1,26 +1,87 @@
+const db = require("../models/index");
+const UserController = require("./users");
+
 class AuthController {
     getLoginView(req, res) {
-        return res.render("login");
+        const token = req.csrfToken();
+        const status = req.flash("status");
+
+        return res.render("login", {
+            status: {
+                show: status.length > 0,
+                messages: status
+            },
+            csrfToken: token
+        });
     }
-    logIn(req, res) {
-        console.log(req.body);
-        return res.json("Logging In");
+    async logIn(req, res) {
+        const credenciales = req.body;
+        const userData = await UserController.findUser(credenciales.email);
+
+        if(userData) {
+            const user = userData.dataValues;
+            if(user.password === credenciales.password) {
+                req.session.loggedIn = true;
+                req.session.username = user.username;
+                req.session.idUser = user.id;
+
+                return res.json(req.session);
+            } else {
+                return res.render("login", {
+                    isError: true,
+                    errors: ["Credenciales incorrectas"],
+                    csrfToken: req.csrfToken()
+                });
+            }
+        }
+
+        return res.render("login", {
+            isError: true,
+            errors: ["Usuario no registrado"],
+            csrfToken: req.csrfToken()
+        })
     }
     getSignUpView(req, res) {
-        return res.render("signup");
+        const token = req.csrfToken();
+
+        return res.render("signup", {
+            csrfToken: token
+        });
     }
 
-    signUp(req, res) {
+    async signUp(req, res) {
         const validation = this.validate(req.body);
         if(!validation.isError) {
-            res.json("Signing in a user");
+            try {
+                const newUser = await db.User.create(req.body);
+                req.flash("status", ["Usuario registrado exitosamente", "Por favor inicia sesión"]);
+                return res.redirect("/auth/login");
+            } catch(error) {
+                const errors = error.errors.map(e => e.type === "unique violation" ?
+                    `El ${e.path} '${e.value}' ya está en uso` :
+                    e.message
+                );
+
+                return res.render("signup", {
+                    isError: true,
+                    errors: errors,
+                    user: req.body,
+                    csrfToken: req.csrfToken()
+                });
+            }
         } else {
-            res.json(validation);
+            return res.render("signup", {
+                isError: true,
+                errors: validation.errors,
+                user: req.body,
+                csrfToken: req.csrfToken()
+            });
         }
     }
 
     logOut(req, res) {
-        return res.json("Logging Out");
+        req.session.destroy();
+        return res.redirect("/auth/login");
     }
 
     validate(userData) {
