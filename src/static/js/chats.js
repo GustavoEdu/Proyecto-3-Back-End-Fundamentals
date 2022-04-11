@@ -17,9 +17,9 @@ const fillChannels = async function() {
       idUsersWithMyMessages.push(channelData.targetUser.id);
       const channel = document.createElement("div");
       channel.dataset.id = channelData.targetUser.id;
-      channel.classList.add("channel");
+      channel.classList.add("chats__channel");
       channel.innerHTML = `
-      <p>${channelData.targetUser.username}</p>
+        <p>${channelData.targetUser.username}</p>
       `;
       channels.appendChild(channel);
       channel.addEventListener("click", () => {
@@ -58,15 +58,15 @@ chatForm.addEventListener("submit", async evt => {
 
   const url = "/chats/create";
   const data = {
-      idReceiver: idReceiver,
-      messageContent: messageContent
+    idReceiver: idReceiver,
+    messageContent: messageContent
   }
   const request = {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
   }
   await fetch(url, request);
   await fillChannels();

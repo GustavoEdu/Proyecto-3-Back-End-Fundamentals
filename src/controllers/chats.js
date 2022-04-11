@@ -3,7 +3,10 @@ const { Op } = require("sequelize");
 
 class ChatController {
   getChatsView(req, res) {
-    return res.render("chats", { chatFunctionality: true });
+    return res.render("chats", { 
+      chatCSS: true, 
+      chatFunctionality: true 
+    });
   }
 
   async getChannels(req, res) {

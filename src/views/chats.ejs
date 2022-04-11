@@ -1,23 +1,16 @@
-<h1>Canales de <%- session.username %></h1>
-<main>
-  <div>
-    <div>
-      <form id="userSearchbar">
-        <input type="text" name="username">
-      </form>
-    </div>
-    <div>Results will be displayed here!</div>
-    <div id="userResult"></div>
-    <div id="channels" data-id="<%- session.idUser %>" data-username="<%- session.username %>"></div>
+<main class="chats">
+  <div class="chats__channels-container">
+    <form id="userSearchbar" class="chats__searchbar">
+      <input class="chats__input chats__input--search" type="text" name="username" placeholder="Buscar en TutoEasy">
+    </form>
+    <div class="chats__result" id="userResult"></div>
+    <div class="chats__channels" id="channels" data-id="<%- session.idUser %>" data-username="<%- session.username %>"></div>
   </div>
-  <div>
-    <div id="chat"></div>
-    <div>
-      <form id="chatForm">
-        <input type="hidden" name="idReceiver">
-        <input type="text" name="messageContent" required>
-        <input type="submit" value="Send Message">
-      </form>
-    </div>
+  <div class="chats__chat-container">
+    <div class="chats__chat" id="chat"></div>
+    <form class="chats__chat-box" id="chatForm">
+      <input type="hidden" name="idReceiver">
+      <input class="chats__input" type="text" name="messageContent" placeholder="Aa">
+    </form>
   </div>
-<main>
+</main>
