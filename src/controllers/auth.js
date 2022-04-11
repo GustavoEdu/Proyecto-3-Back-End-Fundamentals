@@ -25,8 +25,7 @@ class AuthController {
                 req.session.username = user.username;
                 req.session.idUser = user.id;
 
-                // TODO: Redirect to the Real Home
-                return res.render("home");
+                return res.redirect("/chats");
             } else {
                 return res.render("login", {
                     isError: true,
