@@ -55,7 +55,7 @@ app.use(flash());
 connection();
 
 app.get("/", (req, res) => { 
-    return res.end("Hola"); 
+    return res.redirect("/auth/login"); 
 });
 // Utilizando rutas
 app.use("/auth", csrf());

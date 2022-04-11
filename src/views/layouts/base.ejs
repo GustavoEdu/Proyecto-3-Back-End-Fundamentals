@@ -5,13 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TutoEasy</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <% if (typeof(loginFormCSS) !== "undefined" && loginFormCSS) { %>
+      <link rel="stylesheet" href="/css/login.css">
+    <% } %>
+    <% if (typeof(signupFormCSS) !== "undefined" && signupFormCSS) { %>
+      <link rel="stylesheet" href="/css/signup.css">
+    <% } %>
+    <script defer src="/js/index.js"></script>
     <% if (typeof(chatFunctionality) !== "undefined" && chatFunctionality) { %>
       <script defer src="/js/chats.js"></script>
     <% } %>
 </head>
 <body>
-    <%- include("../components/navbar") %>
-    <%- body %>
+  <%- include("../components/navbar") %>
+  <%- body %>
 </body>
 </html>

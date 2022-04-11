@@ -1,7 +1,7 @@
 function addSessionToTemplate(req, res, next) {
-    res.locals.session = req.session;
+  res.locals.session = req.session;
 
-    next();
+  next();
 }
 
 module.exports = addSessionToTemplate;

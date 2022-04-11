@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Bold.ttf');
+  font-weight: bold;
+}
+:root {
+  --regular-font-size: 1.05em;
+  --medium-font-size: 1.25em;
+  --large-font-size: 1.85em;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+main {
+  height: 90.4vh;
+  background-color: #F3F3F3;
+}
+/* Navbar */
+.navbar {
+  padding: 0.6rem;
+  background-color: #FFF;
+  box-shadow: 0px 4px 4px #F3F3F3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar__home-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.navbar__logo {
+  width: 3.6rem;
+}
+.navbar__title {
+  font-size: var(--large-font-size);
+  color: #333;
+}
+.navbar__links {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: space-between;
+}
+.navbar__link {
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  font-size: var(--regular-font-size);
+  text-decoration: none;
+  color: #FFF;
+  background-color: #fca311;
+  transition: background-color 0.3s ease-out;
+}
+.navbar__link--login {
+  background-color: #1877f2;
+}
+.navbar__link--login:hover {
+  background-color: #166fe5;
+}
+.navbar__link--signup {
+  background-color: #42B72A;
+}
+.navbar__link--signup:hover {
+  background-color: #36A420;
+}
+.navbar__link--logout {
+  background-color: #C9184A;
+}
+.navbar__link--chats {
+  background-color: #FCA311;
+}
+.navbar__link--chats:hover {
+  background-color: #E85D04;
+}
+.navbar__link--logout:hover {
+  background-color: #800F2F;
+}
+/* /Navbar */
+/* Auth-Error */
+.authError {
+  position: absolute;
+  top: 5.6rem;
+  right: 0;
+}
+.authError__errors {
+  display: flex;
+  gap: 0.45rem;
+  flex-direction: column;
+  list-style-type: none;
+}
+.authError__error {
+  padding: 0.75rem;
+  border: 1px solid #f5c6cb;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--regular-font-size);
+  color: #721C24;
+  background-color: #F8D7DA; 
+}
+.authError__closer {
+  font-size: var(--regular-font-size);
+  cursor: pointer;
+}
+.authError__closer:hover {
+  color: #E63946;
+}
+/* /Auth-Error */
+/* Not-Allowed */
+.notAllowed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notAllowed__container {
+  padding: 1.2rem;
+  display: flex;
+  gap: 0.25rem;
+  flex-direction: column;
+  background-color: #333;
+}
+.notAllowed__banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notAllowed__banner {
+  width: 50%;
+}
+.notAllowed__title {
+  font-size: var(--large-font-size);
+  text-align: center;
+  color: #FFF;
+}
+.notAllowed__description {
+  font-size: var(--regular-font-size);
+  text-align: center;
+  color: #FFF;
+}
+/* /Not-Allowed */
+/* Not-Found */
+.notFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notFound__container {
+  width: max-content;
+  padding: 1.2rem;
+  background-color: #333;
+  display: flex;
+  gap: 0.25rem;
+  flex-direction: column;
+}
+.notFound__banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.notFound__banner {
+  width: 50%;
+}
+.notFound__title {
+  font-size: var(--large-font-size);
+  text-align: center;
+  color: #FFF;
+}
+.notFound__description {
+  font-size: var(--regular-font-size);
+  text-align: center;
+  color: #FFF;
+}
+/* /Not-Found */

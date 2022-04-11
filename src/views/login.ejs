@@ -1,19 +1,26 @@
 <% if (typeof status !== "undefined" && status.show) { %>
-    <aside>
-        <% status.messages.forEach(message => { %>
-            <div>
-                <p><%- message %><span>X</span></p>
-            </div>
-        <% }) %>
-    </aside>
+<aside class="status">
+  <% status.messages.forEach(message => { %>
+    <div class="status__message-container">
+      <span class="status__message"><%- message %></span><span class="status__closer">✘</span>
+    </div>
+  <% }) %>
+</aside>
 <% } %>
 <main class="login">
-    <h2>Login</h2>
-    <form action="/auth/login" method="POST">
-        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Log In">
-    </form>
-    <%- include("./components/authError") %>
+  <div class="login__container">
+    <img class="login__banner" src="/img/login_logo.png" alt="Login">
+  </div>
+  <div class="login__container">
+    <div class="login__form-container">
+      <h2 class="login__title">Login</h2>
+      <form class="login-form"  action="/auth/login" method="POST">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>" />
+        <input class="login-form__input" type="email" name="email" placeholder="Email" required />
+        <input class="login-form__input" type="password" name="password" placeholder="Password" required />
+        <input class="login-form__btn-submit" type="submit" value="Log In" />
+      </form>
+    </div>
+  </div>
 </main>
+<%- include("./components/authError") %>

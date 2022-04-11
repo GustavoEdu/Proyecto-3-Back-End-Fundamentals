@@ -1,9 +1,11 @@
-<div>
-    <% if (typeof(isError) !== "undefined" && isError) { %>
-        <ul>
-            <% errors.forEach(error => { %>
-                <li><%- error %></li>
-            <% }) %>
-        </ul>
-    <% } %>
+<div class="authError">
+  <% if (typeof(isError) !== "undefined" && isError) { %>
+    <ul class="authError__errors">
+      <% errors.forEach(error => { %>
+        <li class="authError__error">
+          <span class="authError__message"><%- error %></span><span class="authError__closer">✘</span>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
 </div>
