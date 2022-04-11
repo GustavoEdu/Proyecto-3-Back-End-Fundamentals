@@ -19,7 +19,8 @@ const fillChannels = async function() {
       channel.dataset.id = channelData.targetUser.id;
       channel.classList.add("chats__channel");
       channel.innerHTML = `
-        <p>${channelData.targetUser.username}</p>
+        <img class="chats__profile-pic" src="${channelData.targetUser.profilePic}" alt="${channelData.targetUser.username}">
+        <span class="chats__username">${channelData.targetUser.username}</span>
       `;
       channels.appendChild(channel);
       channel.addEventListener("click", () => {

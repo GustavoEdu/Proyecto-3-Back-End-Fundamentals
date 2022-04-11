@@ -59,6 +59,7 @@
   font-weight: bold;
   color: #FFF;
   background-color: #42B72A;
+  cursor: pointer;
   transition: background-color 0.3s ease-out;
 }
 .signup__btn-submit:hover {
