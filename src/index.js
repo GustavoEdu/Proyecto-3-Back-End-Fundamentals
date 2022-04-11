@@ -10,6 +10,7 @@ const session = require("express-session");
 
 // Importando rutas
 const auth = require("./routes/auth");
+const users = require("./routes/users");
 const chats = require("./routes/chats");
 // Importando middlewares
 const addSessionToTemplate = require("./middleware/addSessionToTemplate");
@@ -59,6 +60,8 @@ app.get("/", (req, res) => {
 // Utilizando rutas
 app.use("/auth", csrf());
 app.use("/auth", auth);
+app.use("/users", verifySession);
+app.use("/users", users);
 app.use("/chats", verifySession);
 app.use("/chats", chats);
 

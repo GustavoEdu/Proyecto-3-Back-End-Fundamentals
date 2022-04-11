@@ -1,6 +1,15 @@
 <h1>Canales de <%- session.username %></h1>
 <main>
-  <div id="channels" data-id="<%- session.idUser %>" data-username="<%- session.username %>"></div>
+  <div>
+    <div>
+      <form id="userSearchbar">
+        <input type="text" name="username">
+      </form>
+    </div>
+    <div>Results will be displayed here!</div>
+    <div id="userResult"></div>
+    <div id="channels" data-id="<%- session.idUser %>" data-username="<%- session.username %>"></div>
+  </div>
   <div>
     <div id="chat"></div>
     <div>

@@ -61,6 +61,17 @@ class ChatController {
       idReceiver: idReceiver,
       message: messageContent
     });
+
+    return res.json(message);
+  }
+
+  async createFreeMessage(req, res) {
+    const message = await db.Messages.create({
+      idSender: 1,
+      idReceiver: 29,
+      message: "AnthonyCraft"
+    });
+
     return res.json(message);
   }
 }

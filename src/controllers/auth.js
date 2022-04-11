@@ -16,7 +16,7 @@ class AuthController {
     }
     async logIn(req, res) {
         const credenciales = req.body;
-        const userData = await UserController.findUser(credenciales.email);
+        const userData = await UserController.findUserByEmail(credenciales.email);
 
         if(userData) {
             const user = userData.dataValues;
@@ -25,7 +25,8 @@ class AuthController {
                 req.session.username = user.username;
                 req.session.idUser = user.id;
 
-                return res.json(req.session);
+                // TODO: Redirect to the Real Home
+                return res.render("home");
             } else {
                 return res.render("login", {
                     isError: true,
