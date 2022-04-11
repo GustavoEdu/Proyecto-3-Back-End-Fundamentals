@@ -2,12 +2,17 @@ const db = require("../models/index");
 const { Op } = require("sequelize");
 
 class ChatController {
+  getChatsView(req, res) {
+    return res.render("chats", { chatFunctionality: true });
+  }
+
   async getChannels(req, res) {
+    const { idUser } = req.session;
     const messages = await db.Messages.findAll({
       where: {
         [Op.or]: [
-          { idSender: 1 },
-          { idReceiver: 1 }
+          { idSender: idUser },
+          { idReceiver: idUser }
         ]
       },
       order: [
@@ -15,7 +20,7 @@ class ChatController {
       ]
     });
 
-    const channels = [], myId = 1;
+    const channels = [];
     let isThatUserThere = false, idTargetUser;
     for(let message of messages) {
       for(let channel of channels) {
@@ -23,7 +28,7 @@ class ChatController {
           isThatUserThere = true;
         }
       }
-      idTargetUser = (myId !== message.idSender)? message.idSender : message.idReceiver;
+      idTargetUser = (idUser !== message.idSender)? message.idSender : message.idReceiver;
       if(isThatUserThere) {
         for(let channel of channels) {
           if(channel.targetUser.id === idTargetUser) {
@@ -48,12 +53,14 @@ class ChatController {
   }
 
   async createMessage(req, res) {
-    const message = await db.Messages.create({
-      idSender: 1,
-      idReceiver: 30,
-      message: "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
-    });
+    const idSender = req.session.idUser;
+    const {idReceiver, messageContent} = req.body;
 
+    const message = await db.Messages.create({
+      idSender: idSender,
+      idReceiver: idReceiver,
+      message: messageContent
+    });
     return res.json(message);
   }
 }

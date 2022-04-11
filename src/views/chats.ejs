@@ -1,0 +1,14 @@
+<h1>Canales de <%- session.username %></h1>
+<main>
+  <div id="channels" data-id="<%- session.idUser %>" data-username="<%- session.username %>"></div>
+  <div>
+    <div id="chat"></div>
+    <div>
+      <form id="chatForm">
+        <input type="hidden" name="idReceiver">
+        <input type="text" name="messageContent" required>
+        <input type="submit" value="Send Message">
+      </form>
+    </div>
+  </div>
+<main>

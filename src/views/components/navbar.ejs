@@ -1,8 +1,11 @@
 <nav class="navbar">
-    <% if (session.loggedIn) { %>
-        <div>¡Sesión Activa!</div>
-    <% } else { %>
-        <div>¡Sesión no Activa!</div>
-    <% } %>
-    Navbar Chidori
+    <ul>
+      <% if (session.loggedIn) { %>
+        <a href="/auth/logout">Log Out</a>
+        <a href="/chats/">Mis chats</a>
+      <% } else { %>
+        <a href="/auth/login">Log In</a>
+        <a href="/auth/signup">Sign Up</a>
+      <% } %>
+    </ul>
 </nav>

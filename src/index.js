@@ -13,6 +13,7 @@ const auth = require("./routes/auth");
 const chats = require("./routes/chats");
 // Importando middlewares
 const addSessionToTemplate = require("./middleware/addSessionToTemplate");
+const verifySession = require("./middleware/verifySession");
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(addSessionToTemplate);
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(express.json());
 
 // Definiendo middleware para flash messages
 app.use(flash());
@@ -57,6 +59,7 @@ app.get("/", (req, res) => {
 // Utilizando rutas
 app.use("/auth", csrf());
 app.use("/auth", auth);
+app.use("/chats", verifySession);
 app.use("/chats", chats);
 
 app.get("/notAllowed", (req, res) => { 
