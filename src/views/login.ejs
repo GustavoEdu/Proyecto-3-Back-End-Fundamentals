@@ -9,16 +9,16 @@
 <% } %>
 <main class="login">
   <div class="login__container">
-    <img class="login__banner" src="/img/login_logo.png" alt="Login">
+    <img class="login__banner" src="/img/login.png" alt="Login">
   </div>
   <div class="login__container">
     <div class="login__form-container">
       <h2 class="login__title">Login</h2>
-      <form class="login-form"  action="/auth/login" method="POST">
+      <form class="login__form"  action="/auth/login" method="POST">
         <input type="hidden" name="_csrf" value="<%- csrfToken %>" />
-        <input class="login-form__input" type="email" name="email" placeholder="Email" required />
-        <input class="login-form__input" type="password" name="password" placeholder="Password" required />
-        <input class="login-form__btn-submit" type="submit" value="Log In" />
+        <input class="login__input" type="email" name="email" placeholder="Email" required />
+        <input class="login__input" type="password" name="password" placeholder="Password" required />
+        <input class="login__btn-submit" type="submit" value="Log In" />
       </form>
     </div>
   </div>

@@ -1,15 +1,25 @@
 <main class="signup">
-    <h2>Sign Up</h2>
-    <form action="/auth/signup" method="POST">
+  <div class="signup__container">
+    <img class="signup__banner" src="/img/signup.png" alt="Sign Up">
+  </div>
+  <div class="signup__container">
+    <div class="signup__form-container">
+      <h2 class="signup__title">Sign Up</h2>
+      <form class="signup__form" action="/auth/signup" method="POST">
         <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-        <input type="text" name="name" placeholder="Name" value="<% if (typeof(user) !== "undefined") { %><%- user.name %><% } %>">
-        <input type="text" name="username" placeholder="Username" value="<% if (typeof(user) !== "undefined") { %><%- user.username %><% } %>" required>
-        <input type="date" name="birthday" value="<% if (typeof(user) !== "undefined") { %><%- user.birthday %><% } %>" required>
-        <input type="text" name="profilePic" placeholder="Profile Picture" value="<% if (typeof(user) !== "undefined") { %><%- user.profilePic %><% } %>" required>
-        <input type="email" name="email" placeholder="Email" value="<% if (typeof(user) !== "undefined") { %><%- user.email %><% } %>" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="passwordRepeated" placeholder="Repeat Password" required>
-        <input type="submit" value="Sign Up">
-    </form>
-    <%- include("./components/authError") %>
+        <input class="signup__input" type="text" name="name" placeholder="Name" value="<% if (typeof(user) !== "undefined") { %><%- user.name %><% } %>">
+        <input class="signup__input" type="text" name="username" placeholder="Username" value="<% if (typeof(user) !== "undefined") { %><%- user.username %><% } %>" required>
+        <div class="signup__input-group">
+          <label class="signup_lbl" for="birthdayDate">Birthday:</label>
+          <input id="birthdayDate" class="signup__input signup__input--date" type="date" name="birthday" value="<% if (typeof(user) !== "undefined") { %><%- user.birthday %><% } %>" required>
+        </div>
+        <input class="signup__input" type="text" name="profilePic" placeholder="Profile Picture" value="<% if (typeof(user) !== "undefined") { %><%- user.profilePic %><% } %>" required>
+        <input class="signup__input" type="email" name="email" placeholder="Email" value="<% if (typeof(user) !== "undefined") { %><%- user.email %><% } %>" required>
+        <input class="signup__input" type="password" name="password" placeholder="Password" required>
+        <input class="signup__input" type="password" name="passwordRepeated" placeholder="Repeat Password" required>
+        <input class="signup__btn-submit" type="submit" value="Sign Up">
+      </form>
+    </div>
+  </div>
 </main>
+<%- include("./components/authError") %>

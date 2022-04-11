@@ -71,6 +71,7 @@ class AuthController {
         );
 
         return res.render("signup", {
+          signupFormCSS: true,
           isError: true,
           errors: errors,
           user: req.body,
@@ -79,6 +80,7 @@ class AuthController {
       }
     } else {
       return res.render("signup", {
+        signupFormCSS: true,
         isError: true,
         errors: validation.errors,
         user: req.body,

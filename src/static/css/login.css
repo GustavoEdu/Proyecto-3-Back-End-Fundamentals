@@ -42,35 +42,34 @@
   width: 75%;
 }
 .login__form-container {
-  width: 50%;
+  width: 60%;
   padding: 1.2rem;
   border-radius: 12px;
   display: flex;
   gap: 1.2rem;
   flex-direction: column;
   background-color: #FFF;
+  box-shadow: 2px 2px 12px #B3AEAE;
 }
 .login__title {
   font-size: var(--large-font-size);
   text-align: center;
 }
-/* /Login */
-/* Login-Form */
-.login-form {
+.login__form {
   display: flex;
   gap: 1.2rem;
   flex-direction: column;
 }
-.login-form__input {
+.login__input {
   padding: 0.75rem;
   border: 2px solid #F3F3F3;
   border-radius: 5px;
   font-size: var(--regular-font-size);
 } 
-.login-form__input:focus {
+.login__input:focus {
   outline-color: #b8daff;
 }
-.login-form__btn-submit {
+.login__btn-submit {
   padding: 0.75rem;
   border: none;
   border-radius: 5px;
@@ -80,7 +79,7 @@
   background-color: #1877F2;
   transition: background-color 0.3s ease-out;
 }
-.login-form__btn-submit:hover {
+.login__btn-submit:hover {
   background-color: #166FE5;
 }
-/* /Login-Form */
+/* /Login */
