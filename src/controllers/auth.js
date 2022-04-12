@@ -25,6 +25,7 @@ class AuthController {
         req.session.loggedIn = true;
         req.session.username = user.username;
         req.session.idUser = user.id;
+        req.session.profilePic = user.profilePic;
 
         return res.redirect("/chats");
       } else {
