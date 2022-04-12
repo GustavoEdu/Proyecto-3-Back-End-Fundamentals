@@ -31,12 +31,26 @@ class UserController {
     });
 
     if(userData) {
-      res.render("profile", {
+      return res.render("profile", {
         profileCSS: true,
         userData: userData
       });
     } else {
-      res.redirect("/notFound");
+      return res.redirect("/notFound");
+    }
+  }
+
+  async getEditView(req, res) {
+    if(Number(req.params.id) === req.session.idUser) {
+      const id = req.params.id;
+      const userData = await db.User.findOne({
+        where: {
+          id: id
+        }
+      });
+      res.json(userData);
+    } else {
+      return res.redirect("/notAllowed");
     }
   }
 }

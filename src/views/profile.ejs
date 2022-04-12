@@ -8,7 +8,7 @@
           <p class="main-info__name"><%- userData.name %></p>
         </div>
         <% if (userData.id === session.idUser) { %>
-          <a class="main-info__btn-edit" href="/">Edit Profile</a>
+          <a class="main-info__btn-edit" href="/users/getEdit/<%- session.idUser  %>">Edit Profile</a>
         <% } %>
       </div>
     </div>
