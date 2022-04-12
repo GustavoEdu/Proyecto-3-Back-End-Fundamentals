@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const fileUpload = require("express-fileupload");
 const flash = require("connect-flash");
 const csrf = require("csurf");
 const expressLayouts = require("express-ejs-layouts");
@@ -47,6 +48,9 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
+
+// Middleware para la subida de Archivos
+app.use(fileUpload());
 
 // Definiendo middleware para flash messages
 app.use(flash());
