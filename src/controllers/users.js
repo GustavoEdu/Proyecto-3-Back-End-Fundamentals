@@ -21,6 +21,24 @@ class UserController {
 
     return res.json(userData);
   }
+
+  async getUserView(req, res) {
+    const username = req.params.username;
+    const userData = await db.User.findOne({
+      where: {
+        username: username
+      }
+    });
+
+    if(userData) {
+      res.render("profile", {
+        profileCSS: true,
+        userData: userData
+      });
+    } else {
+      res.redirect("/notFound");
+    }
+  }
 }
 
 module.exports = UserController;

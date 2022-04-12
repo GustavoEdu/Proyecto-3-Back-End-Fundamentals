@@ -1,0 +1,38 @@
+<header class="main-info">
+  <div class="wrapper">
+    <div class="main-info__container">
+      <img class="main-info__profile-picture" src="<%- userData.profilePic %>" alt="<%- userData.username %>">
+      <div class="main-info__horizontal-container">
+        <div class="main-info__vertical-container">
+          <p class="main-info__username"><%- userData.username %></p>
+          <p class="main-info__name"><%- userData.name %></p>
+        </div>
+        <% if (userData.id === session.idUser) { %>
+          <a class="main-info__btn-edit" href="/">Edit Profile</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="general-info">
+  <div class="wrapper">
+    <ul class="general-info__info-list">
+      <li class="general-info__info-item">
+        <span class="general-info__key">Name:</span>
+        <span class="general-info__value"><%- userData.name %></span>
+      </li>
+      <li class="general-info__info-item">
+        <span class="general-info__key">Username:</span>
+        <span class="general-info__value"><%- userData.username %></span>
+      </li>
+      <li class="general-info__info-item">
+        <span class="general-info__key">Email:</span>
+        <span class="general-info__value"><%- userData.email %></span>
+      </li>
+      <li class="general-info__info-item">
+        <span class="general-info__key">Birthday:</span>
+        <span class="general-info__value"><%- userData.birthday %></span>
+      </li>
+    </ul>
+  </div>
+</section>

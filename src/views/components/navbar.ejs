@@ -8,7 +8,7 @@
   <div>
     <ul class="navbar__links">
       <% if (session.loggedIn) { %>
-        <a class="navbar__profile-link" href="/users/<%- session.idUser %>">
+        <a class="navbar__profile-link" href="/users/<%- session.username %>">
           <img class="navbar__profile-picture" src="<%- session.profilePic %>" alt="<%- session.username %>"></img>
           <span class="navbar__profile-username"><%- session.username %></span>
         </a>

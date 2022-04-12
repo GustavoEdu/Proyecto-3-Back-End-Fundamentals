@@ -16,6 +16,7 @@ const chats = require("./routes/chats");
 // Importando middlewares
 const addSessionToTemplate = require("./middleware/addSessionToTemplate");
 const verifySession = require("./middleware/verifySession");
+const verifyNoSession = require("./middleware/verifyNoSession");
 
 const app = express();
 
@@ -43,11 +44,12 @@ app.use(session({
 
 app.use(addSessionToTemplate);
 
+app.use(express.text());
+app.use(express.json());
 // Middleware de urlencoded
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(express.json());
 
 // Middleware para la subida de Archivos
 app.use(fileUpload());
@@ -58,8 +60,12 @@ app.use(flash());
 // Test connection
 connection();
 
-app.get("/", (req, res) => { 
-    return res.redirect("/auth/login"); 
+app.get("/", (req, res) => {
+  if(req.session.loggedIn) {
+    return res.redirect(`/users/${req.session.username}`);
+  } else {
+    return res.redirect("/auth/login");
+  }
 });
 // Utilizando rutas
 app.use("/auth", csrf());

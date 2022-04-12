@@ -27,7 +27,7 @@ const fillChannels = async function() {
       channel.addEventListener("click", () => {
         chatForm.style.display = "block";
         targetUser.innerHTML = `
-          <a class="chats__link" href="/users/${channelData.targetUser.id}">
+          <a class="chats__link" href="/users/${channelData.targetUser.username}">
             <img class="chats__profile-pic" src="${channelData.targetUser.profilePic}" alt="${channelData.targetUser.username}"></img>
             <span class="chats__target-username">${channelData.targetUser.username}</span>
           </a>
@@ -121,7 +121,7 @@ userSearchbar.addEventListener("submit", async evt => {
       userResult.style.display = "none";
       chatForm.style.display = "block";
       targetUser.innerHTML = `
-        <a class="chats__link" href="/users/${userData.id}">
+        <a class="chats__link" href="/users/${userData.username}">
           <img class="chats__profile-pic" src="${userData.profilePic}" alt="${userData.username}"></img>
           <span class="chats__target-username">${userData.username}</span>
         </a>
