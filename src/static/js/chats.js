@@ -20,19 +20,25 @@ const fillChannels = async function() {
       channel.classList.add("chats__channel");
       channel.innerHTML = `
         <img class="chats__profile-pic" src="${channelData.targetUser.profilePic}" alt="${channelData.targetUser.username}">
-        <span class="chats__username">${channelData.targetUser.username}</span>
+        <p class="chats__username">${channelData.targetUser.username}</p>
       `;
       channels.appendChild(channel);
       channel.addEventListener("click", () => {
         chat.innerHTML = "";
         channelData.messages.forEach(messageData => {
+          let profilePicture = "";
+          if(!(messageData.idSender === idUser)) {
+            profilePicture = `<img class="chats__message-profile-pic" src="${channelData.targetUser.profilePic}" alt="${channelData.targetUser.username}">`;
+          }
           chat.innerHTML += `
-            <div>
-              <p>${(messageData.idSender === idUser)? username : channelData.targetUser.username}</p> 
-              <p style="background-color:${(messageData.idSender === idUser)? "skyblue" : "gray"};">${messageData.message}</p>
+            <div class="chats__message-container ${(messageData.idSender === idUser)? "chats__message-container--sender" : "chats__message-container--receiver"}">
+              ${profilePicture}
+              <div class="chats__message ${(messageData.idSender === idUser)? "chats__message--sender" : "chats__message--receiver"}">
+                ${messageData.message}
               </div>
-              `;
-            });
+            </div>
+          `;
+        });
         selectedChannel = channelData.targetUser.id;
         chatForm.idReceiver.value = channelData.targetUser.id;
       });
@@ -41,7 +47,7 @@ const fillChannels = async function() {
     console.log(error.message);
   }
   if(selectedChannel) {
-    for(let channel of channels.querySelectorAll(".channel")) {
+    for(let channel of channels.querySelectorAll(".chats__channel")) {
       if(Number(channel.dataset.id) === selectedChannel) {
         channel.click();
       }
@@ -50,7 +56,7 @@ const fillChannels = async function() {
 }
 fillChannels();
 
-setInterval(() => { fillChannels() }, 1000);
+setInterval(() => { fillChannels(); }, 1000);
 
 chatForm.addEventListener("submit", async evt => {
   evt.preventDefault();
@@ -71,7 +77,7 @@ chatForm.addEventListener("submit", async evt => {
   }
   await fetch(url, request);
   await fillChannels();
-  for(let channel of channels.querySelectorAll(".channel")) {
+  for(let channel of channels.querySelectorAll(".chats__channel")) {
     if(channel.dataset.id === idReceiver) {
       channel.click();
     }
@@ -103,7 +109,7 @@ userSearchbar.addEventListener("submit", async evt => {
       selectedChannel = false;
     });
   } else {
-    for(let channel of channels.querySelectorAll(".channel")) {
+    for(let channel of channels.querySelectorAll(".chats__channel")) {
       if(Number(channel.dataset.id) === userData.id) {
         channel.click();
       }
