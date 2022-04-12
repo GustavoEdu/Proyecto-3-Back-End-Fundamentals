@@ -69,7 +69,11 @@ setInterval(() => { fillChannels(); }, 1000);
 chatForm.addEventListener("submit", async evt => {
   evt.preventDefault();
   const idReceiver = evt.target.idReceiver.value;
-  const messageContent = evt.target.messageContent.value;
+  const messageContent = evt.target.messageContent.value.trim();
+  if(!messageContent) { 
+    evt.target.messageContent.value = "";
+    return; 
+  }
   
   const url = "/chats/create";
   const data = {
