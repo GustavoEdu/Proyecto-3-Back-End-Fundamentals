@@ -1,6 +1,7 @@
 const channels = document.getElementById("channels");
 const idUser = Number(channels.dataset.id);
 const username = channels.dataset.username;
+const targetUser = document.getElementById("targetUser");
 const chat = document.getElementById("chat");
 const chatForm = document.getElementById("chatForm");
 const userResult = document.getElementById("userResult");
@@ -24,6 +25,13 @@ const fillChannels = async function() {
       `;
       channels.appendChild(channel);
       channel.addEventListener("click", () => {
+        chatForm.style.display = "block";
+        targetUser.innerHTML = `
+          <a class="chats__link" href="/users/${channelData.targetUser.id}">
+            <img class="chats__profile-pic" src="${channelData.targetUser.profilePic}" alt="${channelData.targetUser.username}"></img>
+            <span class="chats__target-username">${channelData.targetUser.username}</span>
+          </a>
+        `;
         chat.innerHTML = "";
         channelData.messages.forEach(messageData => {
           let profilePicture = "";
@@ -62,7 +70,7 @@ chatForm.addEventListener("submit", async evt => {
   evt.preventDefault();
   const idReceiver = evt.target.idReceiver.value;
   const messageContent = evt.target.messageContent.value;
-
+  
   const url = "/chats/create";
   const data = {
     idReceiver: idReceiver,
@@ -83,6 +91,7 @@ chatForm.addEventListener("submit", async evt => {
     }
   }
   userResult.innerHTML = "";
+  evt.target.messageContent.value = "";
 });
 
 const userSearchbar = document.getElementById("userSearchbar");
@@ -93,17 +102,26 @@ userSearchbar.addEventListener("submit", async evt => {
   const readableStreamUserData = await fetch(`/users/getUser?username=${username}`);
   const userData = await readableStreamUserData.json();
   if(!userData) {
-    userResult.innerHTML = `
-      <p>Not Found</p>
-    `;
+    userResult.style.display = "flex";
+    userResult.textContent = "Not Found";
     return;
   }
   userResult.innerHTML = "";
   if(!idUsersWithMyMessages.some(idUser => idUser === userData.id) && userData.id !== idUser) {
+    userResult.style.display = "flex";
     userResult.innerHTML = `
-      <p>${userData.username}</p>
+    <img class="chats__profile-pic" src="${userData.profilePic}" alt="${userData.username}">
+    <p class="chats__username">${userData.username}</p>
     `;
     userResult.addEventListener("click", () => {
+      userResult.style.display = "none";
+      chatForm.style.display = "block";
+      targetUser.innerHTML = `
+        <a class="chats__link" href="/users/${userData.id}">
+          <img class="chats__profile-pic" src="${userData.profilePic}" alt="${userData.username}"></img>
+          <span class="chats__target-username">${userData.username}</span>
+        </a>
+      `;
       chat.innerHTML = "";
       chatForm.idReceiver.value = userData.id;
       selectedChannel = false;
@@ -112,7 +130,9 @@ userSearchbar.addEventListener("submit", async evt => {
     for(let channel of channels.querySelectorAll(".chats__channel")) {
       if(Number(channel.dataset.id) === userData.id) {
         channel.click();
+        userResult.style.display = "none";
       }
     }
   }
+  evt.target.username.value = "";
 });
